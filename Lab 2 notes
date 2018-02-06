@@ -1,0 +1,11 @@
+Before using an I/O port, it must be set as input or output by setting the PORT<x>_DIR
+register to 1 (output) or clearing it to 0 (input). Note: <x> is a placeholder for the port letter identifier,
+i.e. PORTD_DIR
+
+Using the PORT<x>_DIRCLR, PORT<x>_DIRSET and PORT<x>_DIRTGL, individual pins on a port can
+be defined as input or output. I.E. setting PORTF_DIRSET or PORTF_DIRCLR to 0100 0000_2 (0x40) 
+will define pin 6 on port F as an output or an input respectively without altering the other pins.
+
+PORT<x>_OUTCLR/OUTSET/OUTTGL will control the activation levels of output ports. By setting
+the OUT register for a port, its output pins will be driven high. Clearing the OUT register
+will drive output pins low.

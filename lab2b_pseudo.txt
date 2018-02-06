@@ -1,0 +1,7 @@
+BEGIN lab2b
+    while(true)
+        reset(switch_ports)
+        switch_ports = read(switches)
+        leds.set(switch_ports)
+    end while
+END lab2b

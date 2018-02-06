@@ -1,0 +1,44 @@
+BEGIN delay10ms
+    count = 0;
+    delay = false;
+    IF xmega clock asserted
+    THEN
+        IF count == 10000
+        THEN
+            count = 0;
+            delay = true;
+        ELSE
+            count++;
+            delay = false;
+        ENDIF
+    ENDIF
+    RETURN delay
+END delay10ms
+
+BEGIN lab2c
+    count = 0;
+    output = false;
+    WHILE true
+        timer = delay10ms();
+        IF timer == true
+        THEN
+            IF count == 19
+            THEN
+                count = 0;
+            ELSE
+                count++;
+            ENDIF
+            IF count < 10
+            THEN
+                output = true;
+            ELSE
+                output = false;
+            ENDIF
+        ENDIF
+    END WHILE true
+END lab2c
+
+            
+
+
+

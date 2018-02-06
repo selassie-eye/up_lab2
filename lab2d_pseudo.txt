@@ -1,0 +1,36 @@
+BEGIN game
+    LET state0 = "10000001";
+    LET state1 = "01000010";
+    LET state2 = "00100100";
+    LET state3 = "00011000";
+    LET state4 = "00000000";
+    LET states = {state0, state1, state2, state3, state2, state1, state0, state4};
+    LET c_state = state4;
+    LET S2 = the port for S2;
+    LET red = RGB(255, 0, 0);
+    LET green = RGB(0, 255, 0);
+    LET res = port D;
+    LET clock = delayed board clock;
+    LET count = 0;
+    WHILE true
+        IF clock && !S2;
+        THEN
+            IF count == 7;
+            THEN
+                count = 0;
+            ELSE
+                count++;
+            ENDIF
+        ENDIF
+        c_state = states[count];
+        IF S2
+        THEN
+            IF c_state = state3;
+            THEN
+                res = green;
+            ELSE
+                res = red;
+            ENDIF
+        ENDIF
+    END WHILE true
+END game
