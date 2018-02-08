@@ -7,7 +7,7 @@
 .include "ATxmega128A1Udef.inc"
 
 .equ LIMIT = 0xFF
-.equ DELAY = 0x19
+.equ DELAY = 0x13
 .equ ZERO = 0x00
 .equ REPS = 0x05
 
