@@ -25,18 +25,18 @@ DELAY10MS:
 DLOOP:
 	inc R11		; Increment counter register
 	cpi R11, LIMIT	; Counter check
-	brne DLOOP	; This loops 256 times, 3*256 = 768 instructions per loop
-			; It takes the CPU 10 ms to execute 20000 instructions,
-			; and by the start of the loop, it has executed 2 instructions, so
-			; 19998 instructions are left to be executed.
-			;
-			; 19998/3 = 6666, so the loop would have to execute 6666 times to delay appropriately.
-			; Since the registers only hold 2 bytes each, multiple registers must track the loop 
-			; execution.
+	brne DLOOP	; This loops 256 times, 3*256 = 768 instructions per loop.
+				; It takes the CPU 10 ms to execute 20000 instructions,
+				; and by the start of the loop, it has executed 2 instructions, so
+				; 19998 instructions are left to be executed.
+				;
+				; 19998/3 = 6666, so the loop would have to execute 6666 times to delay appropriately.
+				; Since the registers only hold 2 bytes each, multiple registers must track the loop 
+				; execution.
 	inc R12		; increments the 2nd counter
 	cpi R12, DELAY	; counter check
 	breq END	; Each increment will execute 771 instructions. 19998/771 ~= 26, so this entire loop
-			; should execute 26 times. The end result will be marginally identical to 10 ms
+				; should execute 26 times. The end result will be marginally identical to 10 ms
 	ldi R11, ZERO
 	rjmp DLOOP
 END:
