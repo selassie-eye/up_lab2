@@ -1,7 +1,9 @@
 /****
- * lab2b.asm
- *
- * Khari Ollivierre
+ * lab2b
+ * Name: Khari Ollivierre
+ * Section: 1490
+ * TA: Samantha Soto
+ * Description: Switch control for LEDs
 ****/
 
 .include "ATxmega128A1Udef.inc"

@@ -1,7 +1,9 @@
 /****
- * lab2b.asm
- *
- * Khari Ollivierre
+ * lab2d
+ * Name: Khari Ollivierre
+ * Section: 1490
+ * TA: Samantha Soto
+ * Description: LED game
 ****/
 
 .include "ATxmega128A1Udef.inc"
@@ -17,7 +19,7 @@
 .equ GREEN	= 0xDF
 
 .equ LIMIT = 0xFF
-.equ DELAY = 0x19
+.equ DELAY = 0x13
 .equ REPS = 0x0A
 
 .def C_STATE 	= R16
@@ -27,7 +29,7 @@
 	rjmp MAIN				
 
 .ORG 0x0100
-	STATES: .db STATE0, STATE1, STATE2, STATE3, STATE2, STATE1, STATE0, ZERO
+	STATES: .db ~STATE0, ~STATE1, ~STATE2, ~STATE3, ~STATE2, ~STATE1, ~STATE0, ~ZERO
 
 MAIN:
 	ldi	ZL, low(STATES << 1)	; Loads table location into Z
@@ -43,8 +45,8 @@ LOOP:
 	sts	PORTC_OUT, C_STATE	; Sets output to state
 	rjmp	DELAYX10MS
 
-RET:
-	cpi	C_STATE, ZERO		; Checks if current state is zero, resets Z if so
+RE:
+	cpi	C_STATE, ~ZERO		; Checks if current state is zero, resets Z if so
 	breq	RESET
 	rjmp	LOOP
 
@@ -54,7 +56,7 @@ RESET:
 	rjmp	LOOP
 
 CHECK:
-	cpi	C_STATE, STATE3
+	cpi	C_STATE, ~STATE3
 	breq	WIN
 
 LOSS:
@@ -120,5 +122,5 @@ END:
 	ldi 	R18, ZERO
 	ldi 	R19, ZERO
 	ldi 	R21, ZERO
-	rjmp 	RET		; Return to game code
+	rjmp 	RE		; Return to game code
 	

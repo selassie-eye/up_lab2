@@ -21,7 +21,7 @@ DELAY10MS:
 	ldi 	R19, ZERO
 	ldi 	R20, LIMIT
 	ldi 	R21, ZERO		; Register for delay extension multiplier counter
-	ldi 	R22, REPS		; Multiplier value stored in R20
+	ldi 	R23, REPS		; Multiplier value stored in R20
 	sts 	PORTD_DIRSET, R13 	; Allow Port D to output the delayed clock
 	sts 	PORTD_OUTCLR, R13
 
@@ -45,7 +45,7 @@ DLOOP:
 
 XLOOP:
 	inc 	R21
-	cp 	R21, R22
+	cp 	R21, R23
 	breq 	END
 	ldi 	R18, ZERO
 	ldi 	R19, ZERO
